@@ -1,0 +1,208 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    background: #000 !important;
+}
+
+:root {
+    --bg: #000;
+    --col: #1f2937;
+    --bg-dark: #000;
+    --col-dark: #f3f4f6;
+
+}
+.image-container .icon-button-wrapper{
+    display: none;
+}
+
+.row {
+    display: flex;
+    align-items: end;
+    div {
+        flex: 2 !important;
+    }
+}
+#preset_buttons {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+}
+.preset_button {
+    flex: 1;
+    min-width: 100px;
+    text-wrap: nowrap;
+    height: 35px;
+    padding: 0 10px;
+    font-size: 12px;
+}
+.generic_button_class {
+    background-color: #fff !important;
+    color: #000 !important;
+    #border: 1px solid #000 !important;
+    border-radius: 5px !important;
+}
+
+#name_textbox {
+    padding: unset !important;
+    display: flex;
+    textarea::placeholder {
+        color: rgba(100,100,100,0.4);
+    }
+    label span {
+        #display: none;
+    }
+    textarea {
+        background-color: #fff;
+        color: #000;
+    }
+}
+#greet_btn {
+    flex: 1;
+}
+
+#progress_slider.slider-theme input[type="range"]::-moz-range-thumb {
+    opacity: 0;
+}
+
+.slider-only input[type="number"] {
+    display: none !important;
+}
+.slider-only .reset-button {
+    display: none;
+}
+.block.side-theme {
+    .image-container {
+        align-content: unset;
+        align-items: unset;
+        justify-content: unset;
+        position: fixed !important;
+    }
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+
+}
+#side_r {
+    position: fixed !important;
+    height: 100vh !important;
+    transform: rotateY(180deg);
+
+}
+.gradio-container {
+    max-width: 50vw !important;
+    margin: auto !important;
+}
+
+/* =========================
+   SLIDER THEME VARIABLES
+   ========================= */
+.slider-theme {
+    /* ---- YOU TOUCH THESE ---- */
+    --bg: #000;
+
+    --track-empty: #fff;
+    --track-fill: #b22222;
+    --thumb: #f5f5f5;
+
+    --title: #e6e6e6;
+
+    --font-family: "Inter", system-ui, sans-serif;
+    --font-size: 14px;
+
+    /* ---- DERIVED / INTERNAL ---- */
+    --border: #999;
+}
+footer {
+    display: none !important;
+}
+
+/* =========================
+   CONTAINER / LABEL
+   ========================= */
+.slider-theme {
+    background: var(--bg);
+    padding: 0.75rem;
+    border-radius: 6px;
+
+    font-family: var(--font-family);
+    font-size: var(--font-size);
+    color: var(--title);
+}
+.slider-theme .slider_input_container {
+    .max_value {
+        width: 50px;
+    }
+    .min_value {
+        width: 20px;
+    }
+}
+
+.slider-theme label,
+.slider-theme .label,
+.slider-theme .title {
+    color: var(--title) !important;
+    font-family: inherit;
+    margin-left: 2rem;
+    margin-bottom: 0.5rem;
+    margin-right: 3rem;
+}
+
+/* =========================
+   INPUT RESET
+   ========================= */
+.slider-theme input[type="range"] {
+    appearance: none !important;
+
+    -webkit-appearance: none !important;
+
+    width: 100%;
+    height: 18px;
+    background: transparent;
+    margin: 0;
+
+    font-family: inherit;
+}
+.max_value::after {
+    content: "€";
+    margin-left: 2px;
+    color: currentColor;
+    font-size: 1em;
+    opacity: 1;
+    pointer-events: none;
+}
+
+
+/* =========================
+   FIREFOX TRACK
+   ========================= */
+.slider-theme input[type="range"]::-moz-range-track {
+    height: 30px;
+    //border-radius: 999px;
+    background: var(--track-empty);
+}
+
+.slider-theme input[type="range"]::-moz-range-progress {
+    height: 30px;
+    //border-radius: 999px;
+}
+
+/* =========================
+   FIREFOX THUMB
+   ========================= */
+.slider-theme input[type="range"]::-moz-range-thumb {
+    color: transparent !important;
+    width: 4px;
+    height: 30px;
+    background: transparent;
+    border-radius: 50%;
+    border: 2px solid #999 !important;
+    cursor: pointer;
+}
+
+/* =========================
+   STATES
+   ========================= */
+.slider-theme input[type="range"]:focus-visible {
+    outline: none;
+}
+
