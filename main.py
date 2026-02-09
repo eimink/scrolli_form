@@ -1,4 +1,5 @@
 import filecmp
+import os
 
 import gradio as gr
 from pathlib import Path
@@ -57,10 +58,12 @@ def save_indexed_texts(texts, folder, prefix="pledge", extension=".txt"):
 def submit(name, slider):
     save_indexed_texts([f"{name}, {slider}"], "./output")
     total = sum_values_from_files("./output")
-    return total
+    return total, f"{total}€"
 
 def submit_fn(value):
     return f"Submit: {value}€"
+
+initial_total = sum_values_from_files("./output")
 
 with gr.Blocks(theme=theme, css=css) as demo:
     logo = gr.Image(
@@ -87,20 +90,25 @@ with gr.Blocks(theme=theme, css=css) as demo:
         elem_classes=["side-theme"]
     )
 
-    progress = gr.Slider(
-        interactive=False,
-        value=sum_values_from_files("./output"),
-        minimum=0,
-        maximum=10000,
-        label="Target for International Edition",
-        elem_id="progress_slider",
-        elem_classes=["slider-theme", "slider-only"],
-    )
-    with gr.Row(elem_id="preset_buttons"):
-        pre_1 = gr.Button(value="Preset: 20€", elem_classes=["preset_button", "generic_button_class"])
-        pre_2 = gr.Button(value="Preset: 30€", elem_classes=["preset_button", "generic_button_class"])
-        pre_3 = gr.Button(value="Preset: 40€", elem_classes=["preset_button", "generic_button_class"])
-        pre_4 = gr.Button(value="Preset: 50€", elem_classes=["preset_button", "generic_button_class"])
+    with gr.Row(elem_id="progress_wrapper", equal_height=False):
+        progress = gr.Slider(
+            interactive=False,
+            value=initial_total,
+            minimum=0,
+            maximum=10000,
+            label="Target for International Edition",
+            elem_id="progress_slider",
+            elem_classes=["slider-theme", "slider-only"],
+        )
+
+        progress_display = gr.Textbox(
+            value=f"{initial_total}€",
+            show_label=False,
+            container=False,
+            interactive=False,
+            elem_id="progress_value_display",
+            elem_classes=["slider-theme", "slider-only"],
+        )    
 
     slider = gr.Slider(
         value=20,
@@ -111,6 +119,12 @@ with gr.Blocks(theme=theme, css=css) as demo:
         elem_id="pledge_slider",
         elem_classes=["slider-theme", "slider-only"],
     )
+
+    with gr.Row(elem_id="preset_buttons"):
+        pre_1 = gr.Button(value="Preset: 20€", elem_classes=["preset_button", "generic_button_class"])
+        pre_2 = gr.Button(value="Preset: 30€", elem_classes=["preset_button", "generic_button_class"])
+        pre_3 = gr.Button(value="Preset: 40€", elem_classes=["preset_button", "generic_button_class"])
+        pre_4 = gr.Button(value="Preset: 50€", elem_classes=["preset_button", "generic_button_class"])
 
     pre_1.click(fn=lambda: 20, outputs=slider)
     pre_2.click(fn=lambda: 30, outputs=slider)
@@ -131,8 +145,8 @@ with gr.Blocks(theme=theme, css=css) as demo:
         greet_btn.click(
             fn=submit,
             inputs=[name, slider],
-            outputs=[progress],
+            outputs=[progress, progress_display],
             api_name="submit",
         )
 
-demo.launch()
+demo.launch(server_name="0.0.0.0", server_port=int(os.environ.get("PORT", "7860")))

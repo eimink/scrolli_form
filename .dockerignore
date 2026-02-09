@@ -1,0 +1,21 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+.git/
+.venv/
+venv/
+env/
+.env
+*.pyo
+*.pyd
+build/
+dist/
+*.egg-info
+*.egg
+node_modules/
+/.cache
+/.mypy_cache
+*.log
+
+# optionally ignore output if you don't want to include pledges in image
+output/
