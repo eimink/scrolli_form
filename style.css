@@ -64,6 +64,41 @@ html, body {
     opacity: 0;
 }
 
+/* make wrapper the positioning context so the display can be overlaid on the slider */
+#progress_wrapper {
+    position: relative;
+}
+
+/* Overlay the progress value inside the slider bar */
+#progress_slider {
+    /* nothing needed here; kept for clarity in case of future tweaks */
+}
+
+/* the textbox element itself is absolutely positioned inside the wrapper */
+#progress_value_display {
+    position: absolute;
+    top: 49%;
+    left: 37%;
+    z-index: 5;
+    pointer-events: none; /* non-interactive visual only */
+    width: auto;
+    max-width: 140px;
+    background: none !important;
+    border: none !important;
+}
+
+/* style the inner input/textarea */
+#progress_value_display input,
+#progress_value_display textarea {
+    background: none !important;
+    border: none !important;
+    color: inherit;
+    font-weight: 700;
+    text-align: center;
+    padding: 0px;
+    box-shadow: none;
+}
+
 .slider-only input[type="number"] {
     display: none !important;
 }
@@ -205,4 +240,3 @@ footer {
 .slider-theme input[type="range"]:focus-visible {
     outline: none;
 }
-
