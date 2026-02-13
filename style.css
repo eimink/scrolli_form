@@ -240,3 +240,20 @@ footer {
 .slider-theme input[type="range"]:focus-visible {
     outline: none;
 }
+
+#progress_amount {
+    display: flex !important;
+    justify-content: center !important;
+    text-align: center !important;
+}
+
+#progress_amount textarea {
+    font-size: 2em !important;
+    font-weight: bold !important;
+    text-align: center !important;
+    border: none !important;
+    background: transparent !important;
+    resize: none !important;
+    padding: 20px !important;
+}
+

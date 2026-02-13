@@ -20,6 +20,6 @@ COPY . /app
 # Ensure output dir exists
 RUN mkdir -p /app/output
 
-EXPOSE 7860
+EXPOSE 7860 7861
 
 CMD ["python", "main.py"]
