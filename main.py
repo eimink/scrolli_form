@@ -59,7 +59,7 @@ def save_indexed_texts(texts, folder, prefix="pledge", extension=".txt"):
 def submit(name, slider):
     save_indexed_texts([f"{name}, {slider}"], "./output")
     total = sum_values_from_files("./output")
-    return total, f"{total}€"
+    return total, f"{total}€", ""
 
 def submit_fn(value):
     return f"Submit: {value}€"
@@ -146,7 +146,7 @@ with gr.Blocks(theme=theme, css=css) as demo:
         greet_btn.click(
             fn=submit,
             inputs=[name, slider],
-            outputs=[progress, progress_display],
+            outputs=[progress, progress_display, name],
             api_name="submit",
         )
 
